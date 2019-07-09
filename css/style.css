@@ -39,7 +39,6 @@ body {
 
 .date-loca-box .date {
     font-weight: 400;
-    width: 100%;
 }
 
 /* parte de temperatura */
@@ -109,7 +108,8 @@ body {
     }
     
     .date-loca-box {
-        text-align: center;    
+        align-items: center;
+        text-align: center;
     }
 
     .other-info {
