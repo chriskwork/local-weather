@@ -39,7 +39,7 @@ function cargarDatos(tiempo){
 
         // poner el icono depende de estado cielo
         if(DATA.estadoCielo[0].descripcion === "") {
-            cielo.innerHTML = "";
+            cielo.innerHTML = "-";
         }else {
             cielo.innerHTML = DATA.estadoCielo[0].descripcion;
         }
