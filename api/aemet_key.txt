@@ -1,0 +1,10 @@
+https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/45165/?api_key=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5b3ZpcmluY0BnbWFpbC5jb20iLCJqdGkiOiJjZGU3YmYxYi1hODNhLTRhMTktYmYxOS0yZTQ3MWQzNmNhOTQiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTU2MjU4MTU2OSwidXNlcklkIjoiY2RlN2JmMWItYTgzYS00YTE5LWJmMTktMmU0NzFkMzZjYTk0Iiwicm9sZSI6IiJ9.FR23V5Ck5S78LeIsaYjiNywNR6oXP18JdvBeSFeElvw
+
+
+// (result of 1st fetch() - prediccion diaria de "TALAVERA")
+// {   
+//     descripcion: "exito",
+//     estado: 200,
+//     datos: "https://opendata.aemet.es/opendata/sh/9882abbc", -> for 2nd fetch()
+//     metadatos: "https://opendata.aemet.es/opendata/sh/dfd88b22"
+// }

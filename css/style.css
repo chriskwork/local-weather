@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding: 3rem;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    min-height: 675px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+/* parte de lugar, provincia */
+
+.date-loca-box {
+    width: 100%;
+    height: 10%;
+    min-height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    padding: 0 1rem;
+    font-weight: 300;
+}
+
+.date-loca-box .date {
+    font-weight: 400;
+}
+
+/* parte de temperatura */
+
+.main-info {
+    width: 100%;
+    height: 65%;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.main-info .icon {
+    font-size: 10rem;
+}
+
+.main-info .temp {
+    font-size: 6rem;
+}
+
+.main-info .temp span {
+    font-size: 3rem;
+}
+
+
+/* parte de viento, humedad, UV */
+
+.other-info {
+    width: 80%;
+    height: 25%;
+    min-height: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.mini-info {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mini-info p:first-child {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.mini-info p:last-child {
+    font-size: 3rem;
+}
+
+
+/* mobile version media query */
+
+@media only screen and (max-width: 500px) {
+
+    body {
+        height: auto;
+    }
+    
+    .date-loca-box {
+        text-align: center;    
+    }
+
+    .other-info {
+        flex-direction: column;
+    }
+
+    .mini-info {
+        margin-bottom: 1.5rem;
+    }
+} 
+
+
+
