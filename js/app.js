@@ -29,52 +29,89 @@ function cargarDatos(tiempo){
         const wind = document.querySelector(".wind");
         const humidity = document.querySelector(".humidity");
         const uv = document.querySelector(".uv");
+        const leftBtn = document.querySelector("#left");
+        const rightBtn = document.querySelector("#right");
 
         // ############# pintar los datos #############
 
-        // fecha y local
-        const DATA = data[0].prediccion.dia[0];
-        date.innerHTML = DATA.fecha;
-        location.innerHTML = `temperatura maxima de hoy - ${data[0].nombre}, ${data[0].provincia}`;
-
-        // poner el icono depende de estado cielo
-        if(DATA.estadoCielo[0].descripcion === "") {
-            cielo.innerHTML = "-";
-        }else {
-            cielo.innerHTML = DATA.estadoCielo[0].descripcion;
+        let i = 0;
+        pintarDato(i);
+        if(i === 0) {
+            leftBtn.style.display = "none";
         }
         
+        leftBtn.addEventListener("click", () => {
+            if(i === 0) {
+                leftBtn.style.display = "none";
+                pintarDato(i);
+            }
+            if(i > 0 && i < 7) {
+                i--;
+                pintarDato(i);
+                rightBtn.style.display = "block";
+            }
+        });
+        rightBtn.addEventListener("click", () => {
+            leftBtn.style.display = "block";
+            if(i >= 0) {
+                i++;
+                pintarDato(i);
+            }
+            if(i === 6) {
+                rightBtn.style.display = "none";
+                pintarDato(i);
+            }
+        });
 
-        const CIELO = data[0].prediccion.dia[0].estadoCielo[0].descripcion;
-        if(CIELO === "" || CIELO === "Nublado" || CIELO === "Poco nuboso"
-        || CIELO === "Nubes altas"){
-            icon.innerHTML = `<i class="wi wi-cloud"></i>`;
-            body.style.backgroundImage = "url(./img/nublado.jpg)";
-        }else if(CIELO === "Despejado" || CIELO === "Soleado") {
-            icon.innerHTML = `<i class="wi wi-day-sunny"></i>`;
-            body.style.backgroundImage = "url(./img/despejado.jpg)";
-        }else if(CIELO === "Lloviendo" || CIELO === "Nuboso con lluvia escasa") {
-            icon.innerHTML = `<i class="wi wi-day-rain"></i>`;
-            body.style.backgroundImage = "url(./img/rain.jpg)";
-        }else{
-            icon.innerHTML = `No hay datos`;
-        }
+        
+        function pintarDato(i) {
+            // fecha y local
+            const DATA = data[0].prediccion.dia[i];
+            date.innerHTML = DATA.fecha;
+            location.innerHTML = `temperatura maxima de hoy - ${data[0].nombre}, ${data[0].provincia}`;
 
-        // maxima temperatura
-        temp.innerHTML = `${DATA.temperatura.maxima}<span>&#8451</span>`;
-         
-        // viento
-        if(DATA.viento[0].direccion === "") {
-            wind.innerHTML = `-, ${DATA.viento[0].velocidad}`;
-        }else{
-            wind.innerHTML = `${DATA.viento[0].direccion}, ${DATA.viento[0].velocidad}`;
-        }
+            // poner el icono depende de estado cielo
+            if(DATA.estadoCielo[0].descripcion === "") {
+                cielo.innerHTML = "-";
+            }else {
+                cielo.innerHTML = DATA.estadoCielo[0].descripcion;
+            }
+            
+
+            const CIELO = data[0].prediccion.dia[i].estadoCielo[0].descripcion;
+            if(CIELO === "" || CIELO === "Nublado" || CIELO === "Poco nuboso"
+            || CIELO === "Nubes altas" || CIELO === "Intervalos nubosos"){
+                icon.innerHTML = `<i class="wi wi-cloud"></i>`;
+                body.style.backgroundImage = "url(./img/nublado.jpg)";
+            }else if(CIELO === "Despejado" || CIELO === "Soleado") {
+                icon.innerHTML = `<i class="wi wi-day-sunny"></i>`;
+                body.style.backgroundImage = "url(./img/despejado.jpg)";
+            }else if(CIELO === "Lloviendo" || CIELO === "Nuboso con lluvia escasa") {
+                icon.innerHTML = `<i class="wi wi-day-rain"></i>`;
+                body.style.backgroundImage = "url(./img/rain.jpg)";
+            }else{
+                icon.innerHTML = `No hay datos`;
+            }
+
+            // maxima temperatura
+            temp.innerHTML = `${DATA.temperatura.maxima}<span>&#8451</span>`;
+            
+            // viento
+            if(DATA.viento[0].direccion === "") {
+                wind.innerHTML = `-, ${DATA.viento[0].velocidad}`;
+            }else{
+                wind.innerHTML = `${DATA.viento[0].direccion}, ${DATA.viento[0].velocidad}`;
+            }
+            
+            // media de la humedad
+            humidity.innerHTML = (DATA.humedadRelativa.maxima + DATA.humedadRelativa.minima) / 2;
+            
+            // ultra violeta
+            uv.innerHTML = DATA.uvMax;
+        };
+
         
-        // media de la humedad
-        humidity.innerHTML = (DATA.humedadRelativa.maxima + DATA.humedadRelativa.minima) / 2;
         
-        // ultra violeta
-        uv.innerHTML = DATA.uvMax;
 
     });
 }
