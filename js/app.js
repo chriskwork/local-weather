@@ -36,9 +36,6 @@ function cargarDatos(tiempo){
 
         let i = 0;
         pintarDato(i);
-        if(i === 0) {
-            leftBtn.style.display = "none";
-        }
         
         leftBtn.addEventListener("click", () => {
             if(i === 0) {
@@ -65,6 +62,10 @@ function cargarDatos(tiempo){
 
         
         function pintarDato(i) {
+            if(i === 0) {
+                leftBtn.style.display = "none";
+            }
+
             // fecha y local
             const DATA = data[0].prediccion.dia[i];
             date.innerHTML = DATA.fecha;
@@ -77,7 +78,6 @@ function cargarDatos(tiempo){
                 cielo.innerHTML = DATA.estadoCielo[0].descripcion;
             }
             
-
             const CIELO = data[0].prediccion.dia[i].estadoCielo[0].descripcion;
             if(CIELO === "" || CIELO === "Nublado" || CIELO === "Poco nuboso"
             || CIELO === "Nubes altas" || CIELO === "Intervalos nubosos"){
@@ -109,9 +109,6 @@ function cargarDatos(tiempo){
             // ultra violeta
             uv.innerHTML = DATA.uvMax;
         };
-
-        
-        
 
     });
 }
